@@ -46,7 +46,7 @@ export default class PostsList extends React.Component {
     render() {
 
         let { isLoaded } = this.state;
-        if(!isLoaded) {
+        if(isLoaded) {
             return<div>Loading..</div>
         } else {
             return (
