@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 
+
+
+
 export default class PostInfo extends React.Component {
     state = {
         user: [],
