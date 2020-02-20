@@ -26,12 +26,7 @@ export default class PostInfo extends React.Component {
                 post: this.context.posts.filter(post => post.id === parseInt(this.matchParams.postId))[0]
             })
           
-       } /*else {
-            axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
-            this.setState({ post: res.data.filter(post => post.id === parseInt(this.matchParams.postId))[0] });
-        })
-       }*/
-         console.log(this.state.post)
+       } 
     }
     
     componentDidMount() {

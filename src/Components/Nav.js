@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-//import {PostsContext} from '../Context/postContext';
 
 class Nav extends Component {
-   // static contextType = PostsContext;
-    render() {
 
-       // const post = this.context
+    render() {
         return(
-        <nav>
-            <Link to='/posts'>
-                <h1>Posts</h1>
-            </Link>
-        </nav>
-    )
-} 
-    }
+            <nav>
+                <Link to='/posts'>
+                    <h1>Posts</h1>
+                </Link>
+            </nav>
+        )
+    }    
+}
    
 
 export default Nav;

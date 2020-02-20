@@ -17,7 +17,7 @@ export default class PostsList extends React.Component {
     }
 
      componentDidUpdate() {
-         if((this.state.posts.length === 0)) {
+         if(this.state.posts.length === 0) {
              this.setState({
                  posts: this.context.posts,
                  isLoaded: true 

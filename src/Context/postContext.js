@@ -12,13 +12,11 @@ class PostsContextProvider extends Component {
         try{
             axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
                 this.setState({ posts: res.data})
-        
             }) 
 
         } catch(error) {
-            throw new Error('No data'); 
+            throw new Error('No post data'); 
         }
-
     }
 
 
