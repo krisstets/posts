@@ -23,27 +23,22 @@ export default class PostsList extends React.Component {
                  isLoaded: true 
             })
         }
-       console.log(this.context);
-       console.log(this.state.posts)
      }
 
     renderTableData() {
-           console.log(this.state.posts)    
-           return this.state.posts.map(post => { 
-           const { id, userId, title } = post 
-           return (
-                 <tr key={id}>
-                  <Link to={`/post-info/${id}/${userId}`}><td>{id}</td></Link>
-                 <td>{userId}</td>
-                 <td>{title}</td>
-                </tr> 
+       return this.state.posts.map(post => { 
+       const { id, userId, title } = post 
+       return (
+            <tr key={id}>
+            <Link to={`/post-info/${id}/${userId}`}><td>{id}</td></Link>
+            <td>{userId}</td>
+            <td>{title}</td>
+            </tr> 
            )
         })
-        
-     }
+    }
 
     render() {
-
         let { isLoaded } = this.state;
         if(!isLoaded) {
             return<div>Loading..</div>
