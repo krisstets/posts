@@ -13,27 +13,28 @@ export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: [], 
-            user: []
+            post: null, 
+            user: null
         }
     }
 
     matchParams = this.props.match.params
     
     componentDidUpdate() {
-
         if(this.state.post.length === 0) {
-            this.setState({ 
-                post: this.context.post.filter(post => post.id === parseInt(this.matchParams.postId))[0]
+          this.setState({ 
+                post: this.context.posts.filter(post => post.id === parseInt(this.matchParams.postId))[0]
             })
-       } 
+          
+       } /*else {
+            axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
+            this.setState({ post: res.data.filter(post => post.id === parseInt(this.matchParams.postId))[0] });
+        })
+       }*/
+         console.log(this.state.post)
     }
-
     
     componentDidMount() {
-        /* axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
-            this.setState({ post: res.data.filter(post => post.id === parseInt(this.matchParams.postId))[0] });
-        });*/
         try {
             axios.get(`https://jsonplaceholder.typicode.com/users`).then(res => {
             this.setState({ 
@@ -45,11 +46,8 @@ export default class PostInfo extends React.Component {
         }
     }
 
-
-
     render() {
-        console.log(this.state)
-        console.log(this.context)
+   
         return (
             <div>
                 <p>About Post:</p> 
@@ -61,9 +59,7 @@ export default class PostInfo extends React.Component {
                     <li>Username:{this.state.user.username}</li>
                     <li>Email:{this.state.user.email}</li>
                 </ul>
-
             </div>
-            
-        )
+       )
     }
 }
