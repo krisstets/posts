@@ -4,12 +4,25 @@ import axios from 'axios';
 export const PostsContext = createContext();
 
 class PostsContextProvider extends Component {
-    state = {
-        posts: []
+
+    constructor(props){
+        super(props);
+
+        this.updatePost = id => {this.setState({activePost: this.state.posts.find(el => el.id === id)})}
+
+        this.state = {
+            posts: [],
+            activePost: null,
+            updatePost: this.updatePost
+         }
     }
 
+    
+
     componentDidMount() {
-        try{
+
+        if(!this.state.posts.length && this.props.location.pathname === '/posts'){
+            try{
             axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
                 this.setState({ posts: res.data})
             }) 
@@ -17,6 +30,8 @@ class PostsContextProvider extends Component {
         } catch(error) {
             throw new Error('No post data'); 
         }
+        }
+        
     }
 
 

@@ -1,7 +1,5 @@
 import React from 'react';
-//import axios from 'axios';
 import './style.css';
-import {Link} from 'react-router-dom';
 import {PostsContext} from '../Context/postContext';
 
 export default class PostsList extends React.Component {
@@ -16,8 +14,18 @@ export default class PostsList extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if(this.state.posts.length === 0 && this.context.posts.length) {
+            this.setState({
+                posts: this.context.posts,
+                isLoaded: true 
+           })
+       }
+    }
+
+  
      componentDidUpdate() {
-         if(this.state.posts.length === 0) {
+         if(this.state.posts.length === 0 && this.context.posts.length) {
              this.setState({
                  posts: this.context.posts,
                  isLoaded: true 
@@ -29,8 +37,8 @@ export default class PostsList extends React.Component {
        return this.state.posts.map(post => { 
        const { id, userId, title } = post 
        return (
-            <tr key={id}>
-            <Link to={`/post-info/${id}/${userId}`}><td>{id}</td></Link>
+            <tr key={id} onClick = {e => {this.context.updatePost(id); this.props.history.push(`/post-info/${id}/${userId}`) }}>
+            <td>{id}</td>
             <td>{userId}</td>
             <td>{title}</td>
             </tr> 
@@ -44,7 +52,7 @@ export default class PostsList extends React.Component {
             return<div>Loading..</div>
         } else {
             return (
-            <table id="posts" className='posts'>
+            <table className='posts'>
                 <tbody>
                   {this.renderTableData()}
                 </tbody>

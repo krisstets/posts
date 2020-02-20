@@ -13,29 +13,28 @@ export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: [], 
-            user: []
+            post: null, 
+            user: null,
+            isLoaded: false
         }
     }
 
-    matchParams = this.props.match.params
     
-    componentDidUpdate() {
-        if(this.state.post.length === 0) {
-          this.setState({ 
-                post: this.context.posts.filter(post => post.id === parseInt(this.matchParams.postId))[0]
-            })
-          
-       } 
-    }
     
-    componentDidMount() {
+    async componentDidMount() {
+        let post = null;
+        const matchParams = this.props.match.params;
+        if(!this.context.activePost){
+            post = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
+        }
         try {
-            axios.get(`https://jsonplaceholder.typicode.com/users`).then(res => {
-            this.setState({ 
-                user: res.data.filter(user => user.id === parseInt(this.matchParams.userId))[0] 
-            });
-         });
+            const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${matchParams.userId}`)
+            this.setState({
+                user: user.data,
+                post: this.context.activePost || post.data,
+                isLoaded: true
+            })
+
         } catch(error) {
             throw new Error('No user data'); 
         }
@@ -43,18 +42,24 @@ export default class PostInfo extends React.Component {
 
     render() {
    
-        return (
-            <div>
-                <p>About Post:</p> 
-                <p>{this.state.post.body}</p>
-                <p>About User:</p>
-                <ul className="user-info">
-                    <li>ID:{this.state.user.id}</li>
-                    <li>Name:{this.state.user.name}</li>
-                    <li>Username:{this.state.user.username}</li>
-                    <li>Email:{this.state.user.email}</li>
-                </ul>
-            </div>
-       )
+        let { isLoaded } = this.state;
+        if(!isLoaded) {
+            return<div>Loading..</div>
+        } else {
+            return (
+                <div>
+                    <p>About Post:</p> 
+                    <p>{this.state.post.body}</p>
+                    <p>About User:</p>
+                    <ul className="user-info">
+                        <li>ID:{this.state.user.id}</li>
+                        <li>Name:{this.state.user.name}</li>
+                        <li>Username:{this.state.user.username}</li>
+                        <li>Email:{this.state.user.email}</li>
+                    </ul>
+                </div>
+             )
+        }
+        
     }
 }
