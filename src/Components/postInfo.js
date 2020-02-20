@@ -13,8 +13,8 @@ export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: null, 
-            user: null
+            post: [], 
+            user: []
         }
     }
 
