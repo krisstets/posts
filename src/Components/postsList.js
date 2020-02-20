@@ -6,7 +6,7 @@ import {PostsContext} from '../Context/postContext';
 
 export default class PostsList extends React.Component {
 
- static contextType = PostsContext;
+    static contextType = PostsContext;
 
     constructor(props) {
         super(props);
@@ -16,23 +16,19 @@ export default class PostsList extends React.Component {
         }
     }
 
-    // componentDidUpdate() {
-    //     if(this.context) {
-    //         this.setState({
-    //             posts: this.context,
-    //             isLoaded: true
-    //         })
-    //     }
-    // }
+     componentDidUpdate() {
+         if((this.state.posts.length === 0)) {
+             this.setState({
+                 posts: this.context.posts,
+                 isLoaded: true 
+            })
+        }
+       console.log(this.context);
+       console.log(this.state.posts)
+     }
 
     renderTableData() {
-
-        if(this.context) {
-            this.setState({
-                posts: this.context,
-                isLoaded: true
-            })  
-            
+           console.log(this.state.posts)    
            return this.state.posts.map(post => { 
            const { id, userId, title } = post 
            return (
@@ -43,18 +39,17 @@ export default class PostsList extends React.Component {
                 </tr> 
            )
         })
-        }
-      
+        
      }
 
     render() {
 
         let { isLoaded } = this.state;
-        if(isLoaded) {
+        if(!isLoaded) {
             return<div>Loading..</div>
         } else {
             return (
-            <table id='posts'>
+            <table id="posts" className='posts'>
                 <tbody>
                   {this.renderTableData()}
                 </tbody>

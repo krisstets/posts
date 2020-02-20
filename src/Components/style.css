@@ -1,9 +1,5 @@
-#title {
-    text-align: center;
-    font-family: arial, sans-serif;
-  }
-  
-  #posts {
+
+  .posts {
     text-align: center;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -11,7 +7,7 @@
     width: 100%;
   }
   
-  #posts td, #posts th {
+  .posts td, .posts th {
     border: 1px solid #ddd;
     padding: 8px;
   }
@@ -20,10 +16,21 @@
   
   #posts tr:hover {background-color: #ddd;}
   
-  #posts th {
+  .posts th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     background-color: #4CAF50;
     color: white;
+  }
+  .user-info{
+    background: #d4d3d3;
+    padding: 20px;
+    text-align: left;
+    
+  }
+
+  .user-info li {
+    background: #eef1f3;
+    margin: 5px;
   }
