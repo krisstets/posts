@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
   .nav-header {
     font-family: arial;
     color: #000 !important;
@@ -13,11 +10,7 @@
   .posts {
     text-align: center;
     font-family: arial;
-<<<<<<< HEAD
     font-size: 16px;
-=======
-    font-size: 14px;
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
     border-collapse: collapse;
 
     
@@ -41,13 +34,8 @@
   }
   .posts tr:nth-child(even){background-color: #f2f2f2;}
 
-<<<<<<< HEAD
   .posts td:nth-child(3),th:nth-child(3) {
     padding-right: 21%;
-=======
-  .posts td:nth-child(3) {
-    padding-right: 17%;
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
   }
   
   .posts tr:hover {background-color: #ddd;}
@@ -68,53 +56,32 @@
     margin-bottom: 20px;
     font-weight: 600;
     padding: 5px 2px;
-<<<<<<< HEAD
     font-size: 16px;
-=======
-    font-size: 14px;
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
     line-height: inherit;
     border-bottom: 1px solid black;
   } 
 
   .user-info p{
-<<<<<<< HEAD
     font-size: 11px;
-=======
-    font-size: 10px;
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
     color: #424344;
   }
   .post-info{
     margin-bottom: 45px;
     font-weight: 600;
-<<<<<<< HEAD
     padding-bottom: 35px;
     font-size: 14px;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-=======
-    padding: 16px 12px;
-    font-size: 14px;
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
   }
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-<<<<<<< HEAD
     max-width: 900px;
     margin: auto;
     text-align: center;
     font-family: arial;
     background-image: url(https://krot.info/uploads/posts/2020-01/1579210855_44-100.jpg);  
-=======
-    max-width: 500px;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    background-image: url(https://avatanplus.com/files/resources/mid/58c8575c4863c15ace954089.jpg);  
->>>>>>> 639c579ae375888ae1a6e94e38be6517e038a3f6
     background-repeat: no-repeat;
     background-size: cover;
   }
