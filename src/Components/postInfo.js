@@ -26,10 +26,9 @@ export default class PostInfo extends React.Component {
                 post: this.context.posts,
                 isLoaded: true 
            })
-           console.log("1" , this.context.post)
+           console.log('HERE')
        } else{
             post = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
-            console.log("2" , post)
        }
        try {
             const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${matchParams.userId}`)
@@ -38,8 +37,6 @@ export default class PostInfo extends React.Component {
                 post: this.context.activePost || post.data,
                 isLoaded: true
             })
-            console.log("3" , post.data)
-            console.log("4" , this.context.activePost)
             this.context.updatePosts(post.data) 
         } catch(error) {
             throw new Error(error); 
@@ -47,7 +44,6 @@ export default class PostInfo extends React.Component {
     }
 
     render() {
-   
         let { isLoaded } = this.state;
         if(!isLoaded) {
             return<div>Loading..</div>
