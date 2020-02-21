@@ -40,7 +40,7 @@ export default class PostsList extends React.Component {
             <tr key={id} onClick = {e => {this.context.updatePost(id); this.props.history.push(`/post-info/${id}/${userId}`) }}>
             <td>{id}</td>
             <td>{userId}</td>
-            <td>{title}</td>
+            <td className='post-title'>{title}</td>
             </tr> 
            )
         })
@@ -53,6 +53,13 @@ export default class PostsList extends React.Component {
         } else {
             return (
             <table className='posts'>
+                  <thead>
+                    <tr>
+                    <th>PostID</th>
+                    <th>UserID</th>
+                    <th>Description</th>
+                    </tr>
+                </thead>
                 <tbody>
                   {this.renderTableData()}
                 </tbody>
@@ -61,4 +68,3 @@ export default class PostsList extends React.Component {
         )}
     }
 }
-

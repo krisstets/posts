@@ -48,15 +48,21 @@ export default class PostInfo extends React.Component {
         } else {
             return (
                 <div>
-                    <p>About Post:</p> 
-                    <p>{this.state.post.body}</p>
-                    <p>About User:</p>
-                    <ul className="user-info">
-                        <li>ID:{this.state.user.id}</li>
-                        <li>Name:{this.state.user.name}</li>
-                        <li>Username:{this.state.user.username}</li>
-                        <li>Email:{this.state.user.email}</li>
-                    </ul>
+                    <div className="card">
+                        <h2>About Post:</h2> 
+                        <p className='post-info'>{this.state.post.body}</p>
+                    </div>
+
+                    <div className="card">
+                        <h2>About User</h2>
+                        <ul className="user-info">
+                            <li><p>ID</p>{this.state.user.id}</li>
+                            <li><p>Name</p>{this.state.user.name}</li>
+                            <li><p>Username</p>{this.state.user.username}</li>
+                            <li><p>Email</p>{this.state.user.email}</li>
+                        </ul>
+                    </div>
+                 
                 </div>
              )
         }
