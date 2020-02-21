@@ -8,32 +8,24 @@ class PostsContextProvider extends Component {
     constructor(props){
         super(props);
 
-        this.updatePost = id => {this.setState({activePost: this.state.posts.find(el => el.id === id)})}
+        this.updatePost = post => {this.setState({activePost: post})}
+        this.updatePosts = posts => {this.setState({posts})}
 
         this.state = {
             posts: [],
             activePost: null,
-            updatePost: this.updatePost
+            updatePost: this.updatePost,
+            updatePosts: this.updatePosts
          }
     }
 
-    
-
-    componentDidMount() {
-
+    async componentDidMount() {
+        let posts = null;
         if(!this.state.posts.length && this.props.location.pathname === '/posts'){
-            try{
-            axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
-                this.setState({ posts: res.data})
-            }) 
-
-        } catch(error) {
-            throw new Error('No post data'); 
+            posts = await axios.get(`https://jsonplaceholder.typicode.com/posts`)
+            this.setState({ posts: posts.data})
         }
-        }
-        
     }
-
 
     render() {
         return(
@@ -43,5 +35,6 @@ class PostsContextProvider extends Component {
         )
     }
 }
+
 
 export default PostsContextProvider;

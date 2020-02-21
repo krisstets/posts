@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import './style.css';
-
-
 import {PostsContext} from '../Context/postContext';
 
 
@@ -13,30 +11,38 @@ export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: null, 
-            user: null,
+            post: [], 
+            user: [],
             isLoaded: false
         }
     }
 
-    
-    
     async componentDidMount() {
         let post = null;
         const matchParams = this.props.match.params;
-        if(!this.context.activePost){
+
+        if(this.state.post.length === 0 && this.context.posts.length) {
+            this.setState({
+                post: this.context.posts,
+                isLoaded: true 
+           })
+           console.log("1" , this.context.post)
+       } else{
             post = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
-        }
-        try {
+            console.log("2" , post)
+       }
+       try {
             const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${matchParams.userId}`)
             this.setState({
                 user: user.data,
                 post: this.context.activePost || post.data,
                 isLoaded: true
             })
-
+            console.log("3" , post.data)
+            console.log("4" , this.context.activePost)
+            this.context.updatePosts(post.data) 
         } catch(error) {
-            throw new Error('No user data'); 
+            throw new Error(error); 
         }
     }
 
@@ -52,7 +58,6 @@ export default class PostInfo extends React.Component {
                         <h2>About Post:</h2> 
                         <p className='post-info'>{this.state.post.body}</p>
                     </div>
-
                     <div className="card">
                         <h2>About User</h2>
                         <ul className="user-info">
