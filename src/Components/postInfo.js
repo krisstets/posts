@@ -11,33 +11,34 @@ export default class PostInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: [], 
-            user: [],
+            post: null,
+            user: null,
             isLoaded: false
         }
     }
 
     async componentDidMount() {
-        let post = null;
+        let post = this.context.activePost;
         const matchParams = this.props.match.params;
 
-        if(this.state.post.length === 0 && this.context.posts.length) {
+        if(!this.state.post && post) {
             this.setState({
-                post: this.context.posts,
+                post,
                 isLoaded: true 
            })
            console.log('HERE')
        } else{
-            post = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
+            const postData = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
+            post = postData.data
        }
        try {
             const user = await axios.get(`https://jsonplaceholder.typicode.com/users/${matchParams.userId}`)
             this.setState({
                 user: user.data,
-                post: this.context.activePost || post.data,
+                post: post,
                 isLoaded: true
             })
-            this.context.updatePosts(post.data) 
+             
         } catch(error) {
             throw new Error(error); 
         }

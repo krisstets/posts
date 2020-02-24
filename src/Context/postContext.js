@@ -9,7 +9,7 @@ class PostsContextProvider extends Component {
         super(props);
 
         this.updatePost = post => {this.setState({activePost: post})}
-        this.updatePosts = posts => {this.setState({posts: posts})}
+        this.updatePosts = posts => {this.setState({posts})}
 
         this.state = {
             posts: [],
