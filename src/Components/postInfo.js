@@ -26,7 +26,6 @@ export default class PostInfo extends React.Component {
                 post,
                 isLoaded: true 
            })
-           console.log('HERE')
        } else{
             const postData = await axios.get(`https://jsonplaceholder.typicode.com/posts/${matchParams.postId}`)
             post = postData.data
@@ -64,10 +63,8 @@ export default class PostInfo extends React.Component {
                             <li><p>Email</p>{this.state.user.email}</li>
                         </ul>
                     </div>
-                 
                 </div>
              )
         }
-        
     }
 }

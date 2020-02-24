@@ -19,23 +19,10 @@ export default class PostsList extends React.Component {
                 posts: this.context.posts,
                 isLoaded: true
             });
-
         } else if(!this.context.posts.length){ 
             let posts = null;
             posts = await axios.get(`https://jsonplaceholder.typicode.com/posts`)
             this.setState({ posts: posts.data, isLoaded: true})
-            
-        }
-        
-
-    }
-
-    componentDidUpdate() {
-        if (this.state.posts.length === 0 && this.context.posts.length) {
-            this.setState({
-                posts: this.context.posts,
-                isLoaded: true
-            });
         }
     }
 
@@ -65,7 +52,6 @@ export default class PostsList extends React.Component {
                         </tr>);
                     })}
                 </tbody>
-
             </table>);
         }
     }
